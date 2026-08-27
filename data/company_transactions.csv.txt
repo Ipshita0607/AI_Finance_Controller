@@ -1,0 +1,5 @@
+transaction_id,date,vendor,amount,reference
+C001,2026-08-10,Amazon Web Services,5000,INV101
+C002,2026-08-11,Microsoft,12000,INV102
+C003,2026-08-12,Uber,2500,INV103
+C004,2026-08-13,Adobe,8000,INV104

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Finance Controller</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ₣
+            </div>
+
+            <div>
+                <h2>FinAI</h2>
+                <span>Finance Controller</span>
+            </div>
+
+        </div>
+
+
+        <nav class="nav-menu">
+
+            <a href="#" class="nav-item active">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="#upload" class="nav-item">
+                <span>↑</span>
+                Reconciliation
+            </a>
+
+            <a href="#results" class="nav-item">
+                <span>▤</span>
+                Transactions
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="user-card">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Finance Admin</strong>
+                    <span>Administrator</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div>
+
+                <p class="breadcrumb">
+                    Dashboard / Reconciliation
+                </p>
+
+                <h1>
+                    Financial Reconciliation
+                </h1>
+
+                <p class="subtitle">
+                    Match company and bank transactions using AI-powered analysis.
+                </p>
+
+            </div>
+
+
+            <div class="header-status">
+
+                <span class="status-dot"></span>
+
+                API Connected
+
+            </div>
+
+        </header>
+
+
+
+        <!-- DASHBOARD STATS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ▤
+                </div>
+
+                <div>
+
+                    <p>Total Transactions</p>
+
+                    <h2 id="totalTransactions">
+                        —
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <p>Matched</p>
+
+                    <h2 id="matched">
+                        —
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    !
+                </div>
+
+                <div>
+
+                    <p>Possible Matches</p>
+
+                    <h2 id="possibleMatches">
+                        —
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+                    ×
+                </div>
+
+                <div>
+
+                    <p>Unmatched</p>
+
+                    <h2 id="unmatched">
+                        —
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- UPLOAD SECTION -->
+
+        <section
+            class="upload-section"
+            id="upload"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Run Reconciliation
+                    </h2>
+
+                    <p>
+                        Upload your transaction files to begin AI-powered matching.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="upload-grid">
+
+
+                <!-- COMPANY FILE -->
+
+                <div class="upload-card">
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Company Transactions
+                    </h3>
+
+                    <p>
+                        Upload your internal company transaction CSV.
+                    </p>
+
+
+                    <label
+                        for="companyFile"
+                        class="file-button"
+                    >
+                        Choose CSV File
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="companyFile"
+                        accept=".csv,.txt"
+                    >
+
+
+                    <div
+                        class="file-name"
+                        id="companyFileName"
+                    >
+                        No file selected
+                    </div>
+
+                </div>
+
+
+
+                <!-- BANK FILE -->
+
+                <div class="upload-card">
+
+                    <div class="upload-icon">
+                        🏦
+                    </div>
+
+                    <h3>
+                        Bank Transactions
+                    </h3>
+
+                    <p>
+                        Upload your bank transaction CSV.
+                    </p>
+
+
+                    <label
+                        for="bankFile"
+                        class="file-button"
+                    >
+                        Choose CSV File
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="bankFile"
+                        accept=".csv,.txt"
+                    >
+
+
+                    <div
+                        class="file-name"
+                        id="bankFileName"
+                    >
+                        No file selected
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RUN BUTTON -->
+
+            <div class="button-container">
+
+                <button
+                    id="reconcileBtn"
+                    onclick="runReconciliation()"
+                >
+
+                    <span id="buttonText">
+                        ✦ Run AI Reconciliation
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loading"
+                class="loading hidden"
+            >
+
+                <div class="spinner"></div>
+
+                <p>
+                    AI is analyzing transactions...
+                </p>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="errorMessage"
+                class="error-message hidden"
+            ></div>
+
+        </section>
+
+
+
+        <!-- RESULTS -->
+
+        <section
+            class="results-section"
+            id="results"
+        >
+
+            <div class="results-header">
+
+                <div>
+
+                    <h2>
+                        Reconciliation Results
+                    </h2>
+
+                    <p>
+                        AI-generated transaction matching results.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="match-rate"
+                    id="matchRate"
+                >
+
+                    Match Rate: —
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Company Transaction
+                            </th>
+
+                            <th>
+                                Bank Transaction
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                AI Confidence
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="resultsBody">
+
+                        <tr class="empty-row">
+
+                            <td colspan="4">
+
+                                No reconciliation has been run yet.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
