@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
+from pathlib import Path
 import pandas as pd
 import joblib
 
@@ -37,12 +37,14 @@ app.add_middleware(
 # LOAD TRAINED ML MODEL
 # ==========================================
 
+BASE_DIR = Path(__file__).resolve().parent
+
 model = joblib.load(
-    "transaction_matching_model.pkl"
+    BASE_DIR / "transaction_matching_model.pkl"
 )
 
 features = joblib.load(
-    "model_features.pkl"
+    BASE_DIR / "model_features.pkl"
 )
 
 
