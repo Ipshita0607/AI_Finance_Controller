@@ -109,14 +109,13 @@ async function runReconciliation() {
 
     try {
 
-        const response =
-    await fetch(
-        "/reconcile",
-        {
-            method: "POST",
-            body: formData
-        }
-    );
+        const response = await fetch(
+    "https://ai-finance-controller-gules.vercel.app/reconcile",
+    {
+        method: "POST",
+        body: formData
+    }
+);
 
         if (!response.ok) {
 
